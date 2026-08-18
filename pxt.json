@@ -1,5 +1,5 @@
 {
-    "name": "pxt-skrepka-sd",
+    "name": "SDcard",
     "version": "0.0.1",
     "description": "SD Card reader extension for microbit,
     "dependencies": {
