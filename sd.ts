@@ -8,13 +8,11 @@ namespace SkrepkaSD {
     //% block="включить SD карту MOSI %mosi MISO %miso SCK %sck CS %cs"
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     export function init(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
-        // Передаем внутренний численный ID пина micro:bit в C++
         initCard(mosi, miso, sck, cs);
     }
 
     /**
      * Открыть файл программы .giz с флешки.
-     * @param filename имя файла, eg: "main.giz"
      */
     //% blockId=skrepka_sd_open
     //% block="открыть файл %filename"
@@ -30,5 +28,15 @@ namespace SkrepkaSD {
     //% block="считать строку кода"
     export function readLine(): string {
         return readToBuffer();
+    }
+
+    /**
+     * Записать строчку текста в определенный файл. Если файла нет, он создастся автоматически.
+     */
+    //% blockId=skrepka_sd_write
+    //% block="записать в файл %filename строку %text"
+    //% filename.defl="main.giz"
+    export function writeLine(filename: string, text: string): boolean {
+        return writeToFile(filename, text);
     }
 }
