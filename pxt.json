@@ -1,0 +1,20 @@
+{
+    "name": "pxt-skrepka-sd",
+    "version": "0.0.1",
+    "description": "SD Card reader extension for microbit,
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "sd.ts",
+        "shims.d.ts",
+        "sdcard.cpp"
+    ],
+    "testFiles": [],
+    "targetVersions": {
+        "target": "6.0.0"
+    },
+    "supportedTargets": [
+        "microbit"
+    ]
+}
