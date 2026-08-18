@@ -8,4 +8,8 @@ declare namespace SkrepkaSD {
 
     //% shim=SkrepkaSD::readToBuffer
     function readToBuffer(): string;
+
+    // Сигнатура для блока записи
+    //% shim=SkrepkaSD::writeToFile
+    function writeToFile(filename: string, text: string): boolean;
 }
