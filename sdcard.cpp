@@ -1,4 +1,5 @@
 #include "pxt-core.h"
+#include "pxt.h"
 #include "FATFileSystem.h"
 #include "SDBlockDevice.h"
 
