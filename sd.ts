@@ -1,42 +1,40 @@
-//% color=#1E90FF icon="\uf07b" block="SkrepkaSD"
+//% color=#4c97ff icon="\uf0a0" block="Skrepka SD"
 namespace SkrepkaSD {
 
     /**
-     * Включить карту памяти через SPI пины.
+     * Инициализация SD карты с выбором пинов.
      */
-    //% blockId=skrepka_sd_init
-    //% block="включить SD карту MOSI %mosi MISO %miso SCK %sck CS %cs"
-    //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
-    export function init(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
+    //% block="Инициализировать карту: MOSI %mosi| MISO %miso| SCK %sck| CS %cs"
+    //% mosi.shadow="digitalioPins"
+    //% miso.shadow="digitalioPins"
+    //% sck.shadow="digitalioPins"
+    //% cs.shadow="digitalioPins"
+    export function init(mosi: number, miso: number, sck: number, cs: number): void {
+        // Вызываем функцию из C++ через shim
         initCard(mosi, miso, sck, cs);
     }
 
     /**
-     * Открыть файл программы .giz с флешки.
+     * Открыть файл для чтения.
      */
-    //% blockId=skrepka_sd_open
-    //% block="открыть файл %filename"
-    //% filename.defl="main.giz"
+    //% block="Открыть файл %filename для чтения"
     export function openFile(filename: string): boolean {
         return openGizFile(filename);
     }
 
     /**
-     * Считать следующую строчку кода. Если файл кончился, вернет "EOF".
+     * Прочитать одну строку из открытого файла.
      */
-    //% blockId=skrepka_sd_read
-    //% block="считать строку кода"
+    //% block="Прочитать строку"
     export function readLine(): string {
         return readToBuffer();
     }
 
     /**
-     * Записать строчку текста в определенный файл. Если файла нет, он создастся автоматически.
+     * Записать текст в файл.
      */
-    //% blockId=skrepka_sd_write
-    //% block="записать в файл %filename строку %text"
-    //% filename.defl="main.giz"
-    export function writeLine(filename: string, text: string): boolean {
+    //% block="Записать в файл %filename текст %text"
+    export function write(filename: string, text: string): boolean {
         return writeToFile(filename, text);
     }
 }
