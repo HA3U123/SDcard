@@ -1,5 +1,5 @@
 {
-    "name": "SDcard",
+    "name": "SkrepkaSD",
     "version": "0.0.1",
     "description": "SD Card reader extension for microbit",
     "files": [
