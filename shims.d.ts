@@ -1,5 +1,6 @@
-// Этот файл автоматически связывает TS и C++ (shims.d.ts)
-declare namespace SkrepkaSD {
+//% color=#4c97ff icon="\uf0a0"
+namespace SkrepkaSD {
+
     //% shim=SkrepkaSD::initCard
     function initCard(mosi: number, miso: number, sck: number, cs: number): void;
 
@@ -9,12 +10,6 @@ declare namespace SkrepkaSD {
     //% shim=SkrepkaSD::readToBuffer
     function readToBuffer(): string;
 
-    // Сигнатура для блока записи
     //% shim=SkrepkaSD::writeToFile
     function writeToFile(filename: string, text: string): boolean;
-    //% shim=String_::charAt
-function charAt(pos: number): string;
-
-//% shim=String_::toNumber
-function toNumber(text: string): number;
 }
