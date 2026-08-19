@@ -6,7 +6,8 @@ export namespace SkrepkaSD {
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     //% weight=100
     export function initialize(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
-        initCard(mosi, miso, sck, cs);
+        // ИСПРАВЛЕНО: Явный вызов через имя namespace
+        SkrepkaSD.initCard(mosi, miso, sck, cs);
     }
 
     //% blockId="skrepka_sd_open_block" 
@@ -14,14 +15,16 @@ export namespace SkrepkaSD {
     //% filename.shadow="text"
     //% weight=90
     export function openFile(filename: string): boolean {
-        return openGizFile(filename);
+        // ИСПРАВЛЕНО: Явный вызов
+        return SkrepkaSD.openGizFile(filename);
     }
 
     //% blockId="skrepka_sd_read_block" 
     //% block="Прочитать строку из файла"
     //% weight=80
     export function readLine(): string {
-        return readToBuffer();
+        // ИСПРАВЛЕНО: Явный вызов
+        return SkrepkaSD.readToBuffer();
     }
 
     //% blockId="skrepka_sd_is_eof" 
@@ -37,6 +40,7 @@ export namespace SkrepkaSD {
     //% filename.shadow="text" text.shadow="text"
     //% weight=70
     export function writeLine(filename: string, text: string): boolean {
-        return writeToFile(filename, text);
+        // ИСПРАВЛЕНО: Явный вызов
+        return SkrepkaSD.writeToFile(filename, text);
     }
 }
