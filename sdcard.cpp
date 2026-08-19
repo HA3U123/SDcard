@@ -17,8 +17,7 @@ namespace SkrepkaSD {
         }
     }
 
-    //% blockId="skrepka_sd_init" block="Инициализировать SD-карту: MOSI %mosi| MISO %miso| SCK %sck| CS %cs"
-    //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
+        //% blockId="skrepka_sd_init" block="Инициализировать SD-карту: MOSI %mosi| MISO %miso| SCK %sck| CS %cs"
     //% weight=100
     void initCard(int mosi, int miso, int sck, int cs) {
         if (sd != nullptr) return; 
