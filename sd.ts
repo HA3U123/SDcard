@@ -6,8 +6,13 @@ export namespace SkrepkaSD {
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     //% weight=100
     export function initialize(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
-        // ИСПРАВЛЕНО: Явный вызов через имя namespace
-        SkrepkaSD.initCard(mosi, miso, sck, cs);
+        // ИСПРАВЛЕНО: Явно приводим enum DigitalPin к типу number через унарный плюс или принудительное приведение
+        let mosi_num: number = mosi;
+        let miso_num: number = miso;
+        let sck_num: number = sck;
+        let cs_num: number = cs;
+        
+        SkrepkaSD.initCard(mosi_num, miso_num, sck_num, cs_num);
     }
 
     //% blockId="skrepka_sd_open_block" 
@@ -15,7 +20,6 @@ export namespace SkrepkaSD {
     //% filename.shadow="text"
     //% weight=90
     export function openFile(filename: string): boolean {
-        // ИСПРАВЛЕНО: Явный вызов
         return SkrepkaSD.openGizFile(filename);
     }
 
@@ -23,7 +27,6 @@ export namespace SkrepkaSD {
     //% block="Прочитать строку из файла"
     //% weight=80
     export function readLine(): string {
-        // ИСПРАВЛЕНО: Явный вызов
         return SkrepkaSD.readToBuffer();
     }
 
@@ -40,7 +43,6 @@ export namespace SkrepkaSD {
     //% filename.shadow="text" text.shadow="text"
     //% weight=70
     export function writeLine(filename: string, text: string): boolean {
-        // ИСПРАВЛЕНО: Явный вызов
         return SkrepkaSD.writeToFile(filename, text);
     }
 }
