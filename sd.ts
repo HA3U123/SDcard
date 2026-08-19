@@ -1,10 +1,6 @@
-    /**
-     * Инициализирует SD-карту с указанием пинов подключения SPI.
-     * @param mosi Pin для передачи данных, eg: DigitalPin.P15
-     * @param miso Pin для приема данных, eg: DigitalPin.P14
-     * @param sck Pin тактового сигнала, eg: DigitalPin.P13
-     * @param cs Pin выбора чипа, eg: DigitalPin.P16
-     */
+//% color=#1E6273 icon="\uf0a0" block="Skrepka SD" weight=95
+export namespace SkrepkaSD {
+
     //% blockId="skrepka_sd_init_block" 
     //% block="Инициализировать SD-карту| MOSI %mosi| MISO %miso| SCK %sck| CS %cs"
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
@@ -12,11 +8,15 @@
     export function initialize(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
         initCard(mosi, miso, sck, cs);
     }
-    
-    /**
-     * Считывает следующую строку из ранее открытого файла.
-     * Если достигнут конец файла (EOF), автоматически закрывает его и возвращает "EOF".
-     */
+
+    //% blockId="skrepka_sd_open_block" 
+    //% block="Открыть файл %filename для чтения"
+    //% filename.shadow="text"
+    //% weight=90
+    export function openFile(filename: string): boolean {
+        return openGizFile(filename);
+    }
+
     //% blockId="skrepka_sd_read_block" 
     //% block="Прочитать строку из файла"
     //% weight=80
@@ -24,11 +24,6 @@
         return readToBuffer();
     }
 
-    /**
-     * Проверяет, осталась ли еще информация в файле (не равен ли результат "EOF").
-     * Полезно для циклов "пока не конец файла".
-     * @param line Переменная строки, полученная из файла
-     */
     //% blockId="skrepka_sd_is_eof" 
     //% block="строка %line является концом файла (EOF)?"
     //% line.shadow="text"
@@ -37,13 +32,6 @@
         return line == "EOF";
     }
 
-    /**
-     * Дописывает текстовую строку в конец указанного файла (режим Append).
-     * Если файл не существовал, он будет создан автоматически.
-     * Каждая запись автоматически завершается переносом строки (\n).
-     * @param filename Имя файла, eg: "log.txt"
-     * @param text Текст для записи, eg: "Привет, мир!"
-     */
     //% blockId="skrepka_sd_write_block" 
     //% block="В файл %filename записать строку %text"
     //% filename.shadow="text" text.shadow="text"
