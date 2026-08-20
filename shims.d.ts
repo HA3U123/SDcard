@@ -1,4 +1,4 @@
-//% color=#1E6273 icon="\uf0a0" block="Skrepka SD" weight=95
+//% color=#1E6273 icon="\uf0a0" weight=95
 declare namespace SkrepkaSD {
     //% shim=SkrepkaSD::initCard
     function initCard(mosi: number, miso: number, sck: number, cs: number): void;
