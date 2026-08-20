@@ -1,4 +1,4 @@
-//% color=#1E6273 icon="\uf0a0" block="Skrepka SD" weight=95
+//% color=#1E6273 icon="\uf0a0" weight=95
 export namespace SkrepkaSD {
 
     //% blockId="skrepka_sd_init_block" 
@@ -6,7 +6,6 @@ export namespace SkrepkaSD {
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     //% weight=100
     export function initialize(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin, cs: DigitalPin): void {
-        // ИСПРАВЛЕНО: Явно приводим enum DigitalPin к типу number через унарный плюс или принудительное приведение
         let mosi_num: number = mosi;
         let miso_num: number = miso;
         let sck_num: number = sck;
