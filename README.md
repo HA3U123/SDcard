@@ -1,2 +1,2 @@
 # SDcard
-SDcard for makecode microbit
+SDcard for makecode microbit v2
