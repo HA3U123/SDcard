@@ -1,19 +1,20 @@
 {
-    "name": "SkrepkaSD",
-    "version": "0.0.1",
-    "description": "SD Card reader extension for microbit",
-    "files": [
-        "sd.ts",
-        "sdcard.cpp",
-        "shims.d.ts"
-    ],
+    "name": "skrepkasd",
+    "version": "1.0.0",
+    "description": "Полноценное расширение SkrepkaSD для чтения и записи SD-карт на micro:bit V2",
     "dependencies": {
         "core": "*"
     },
+    "files": [
+        "main.ts",
+        "sd.cpp",
+        "shims.d.ts"
+    ],
+    "testFiles": [],
+    "targetVersions": {
+        "target": "6.0.0"
+    },
     "supportedTargets": [
         "microbit"
-    ],
-    "yotta": {
-        "config": {}
-    }
+    ]
 }
