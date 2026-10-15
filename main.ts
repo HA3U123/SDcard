@@ -7,7 +7,9 @@ namespace customsd {
     //% block="Инициализировать SD-карту | MOSI %mosi | MISO %miso | CLK %sclk | CS %cs"
     //% mosi.defl=DigitalPin.P14 miso.defl=DigitalPin.P13 sclk.defl=DigitalPin.P15 cs.defl=DigitalPin.P16
     export function initSD(mosi: DigitalPin, miso: DigitalPin, sclk: DigitalPin, cs: DigitalPin): void {
-        c_init(mosi, miso, sclk, cs);
+        if (pxt.getConfigData("target") == "microbit") {
+            c_init(mosi, miso, sclk, cs);
+        }
     }
 
     /**
@@ -16,7 +18,9 @@ namespace customsd {
     //% block="Записать строку %text в файл %filename"
     //% text.defl="125,Avav,Aprold" filename.defl="data.txt"
     export function writeLine(text: string, filename: string): void {
-        c_write(text, filename);
+        if (pxt.getConfigData("target") == "microbit") {
+            c_write(text, filename);
+        }
     }
 
     /**
@@ -25,7 +29,10 @@ namespace customsd {
     //% block="Прочитать строку № %lineIndex из файла %filename"
     //% lineIndex.defl=0 filename.defl="data.txt"
     export function readLine(lineIndex: number, filename: string): string {
-        return c_read_line(filename, lineIndex);
+        if (pxt.getConfigData("target") == "microbit") {
+            return c_read_line(filename, lineIndex);
+        }
+        return "125,Avav,Aprold"; // Заглушка для симулятора
     }
 
     /**
@@ -34,7 +41,10 @@ namespace customsd {
     //% block="Количество строк в файле %filename"
     //% filename.defl="data.txt"
     export function countLines(filename: string): number {
-        return c_count_lines(filename);
+        if (pxt.getConfigData("target") == "microbit") {
+            return c_count_lines(filename);
+        }
+        return 1; // Заглушка для симулятора
     }
 
     /**
@@ -43,7 +53,10 @@ namespace customsd {
     //% block="Файл %filename существует?"
     //% filename.defl="data.txt"
     export function fileExists(filename: string): boolean {
-        return c_exists(filename);
+        if (pxt.getConfigData("target") == "microbit") {
+            return c_exists(filename);
+        }
+        return true; // Заглушка для симулятора
     }
 
     /**
@@ -52,6 +65,8 @@ namespace customsd {
     //% block="Удалить файл %filename с SD-карты"
     //% filename.defl="data.txt"
     export function deleteFile(filename: string): void {
-        c_delete(filename);
+        if (pxt.getConfigData("target") == "microbit") {
+            c_delete(filename);
+        }
     }
 }
