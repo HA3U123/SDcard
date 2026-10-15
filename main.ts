@@ -7,7 +7,7 @@ namespace customsd {
     //% block="Инициализировать SD-карту | MOSI %mosi | MISO %miso | CLK %sclk | CS %cs"
     //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sclk.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     export function initSD(mosi: DigitalPin, miso: DigitalPin, sclk: DigitalPin, cs: DigitalPin): void {
-        // Программная инициализация SPI-потока данных через стандартные функции micro:bit
+        // Чистый TypeScript: настраиваем Serial-поток на выбранные пины
         serial.redirect(mosi, miso, BaudRate.BaudRate115200);
     }
 
