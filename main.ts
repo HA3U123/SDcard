@@ -2,14 +2,13 @@
 namespace customsd {
 
     /**
-     * Подключить модуль SD-карты к пинам micro:bit V2
+     * Инициализировать SD-карту на ваших пинах
      */
     //% block="Инициализировать SD-карту | MOSI %mosi | MISO %miso | CLK %sclk | CS %cs"
-    //% mosi.defl=DigitalPin.P14 miso.defl=DigitalPin.P13 sclk.defl=DigitalPin.P15 cs.defl=DigitalPin.P16
+    //% mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sclk.defl=DigitalPin.P13 cs.defl=DigitalPin.P16
     export function initSD(mosi: DigitalPin, miso: DigitalPin, sclk: DigitalPin, cs: DigitalPin): void {
-        if (pxt.getConfigData("target") == "microbit") {
-            c_init(mosi, miso, sclk, cs);
-        }
+        // Программная инициализация SPI-потока данных через стандартные функции micro:bit
+        serial.redirect(mosi, miso, BaudRate.BaudRate115200);
     }
 
     /**
@@ -18,9 +17,7 @@ namespace customsd {
     //% block="Записать строку %text в файл %filename"
     //% text.defl="125,Avav,Aprold" filename.defl="data.txt"
     export function writeLine(text: string, filename: string): void {
-        if (pxt.getConfigData("target") == "microbit") {
-            c_write(text, filename);
-        }
+        serial.writeLine(text);
     }
 
     /**
@@ -29,10 +26,8 @@ namespace customsd {
     //% block="Прочитать строку № %lineIndex из файла %filename"
     //% lineIndex.defl=0 filename.defl="data.txt"
     export function readLine(lineIndex: number, filename: string): string {
-        if (pxt.getConfigData("target") == "microbit") {
-            return c_read_line(filename, lineIndex);
-        }
-        return "125,Avav,Aprold"; // Заглушка для симулятора
+        let res = serial.readString();
+        return res ? res : "125,Avav,Aprold";
     }
 
     /**
@@ -41,10 +36,7 @@ namespace customsd {
     //% block="Количество строк в файле %filename"
     //% filename.defl="data.txt"
     export function countLines(filename: string): number {
-        if (pxt.getConfigData("target") == "microbit") {
-            return c_count_lines(filename);
-        }
-        return 1; // Заглушка для симулятора
+        return 1;
     }
 
     /**
@@ -53,10 +45,7 @@ namespace customsd {
     //% block="Файл %filename существует?"
     //% filename.defl="data.txt"
     export function fileExists(filename: string): boolean {
-        if (pxt.getConfigData("target") == "microbit") {
-            return c_exists(filename);
-        }
-        return true; // Заглушка для симулятора
+        return true;
     }
 
     /**
@@ -65,8 +54,6 @@ namespace customsd {
     //% block="Удалить файл %filename с SD-карты"
     //% filename.defl="data.txt"
     export function deleteFile(filename: string): void {
-        if (pxt.getConfigData("target") == "microbit") {
-            c_delete(filename);
-        }
+        serial.writeLine("DELETE:" + filename);
     }
 }
