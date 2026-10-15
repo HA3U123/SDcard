@@ -6,9 +6,7 @@
         "core": "*"
     },
     "files": [
-        "main.ts",
-        "sd.cpp",
-        "shims.d.ts"
+        "main.ts"
     ],
     "testFiles": [],
     "targetVersions": {
